@@ -17,27 +17,33 @@ import org.apache.axis2.AxisFault;
  * @author sebastian
  */
 public class PersonCommunicator {
-    public Person run(String ci){
+
+    public Person run(String ci) {
         PersonSoapStub stub;
-        PersonSoapStub.Person personSoap = new PersonSoapStub.Person();
+        PersonSoapStub.Person personSoap;
         Person responsePerson;
-        
+
         responsePerson = new Person();
-        
+
         try {
-            PersonSoapStub.SearchPersonE personSoapE;
+            PersonSoapStub.SearchPerson searchPerson;
+            PersonSoapStub.SearchPersonE searchPersonE;
             PersonSoapStub.SearchPersonResponseE responseE;
             PersonSoapStub.SearchPersonResponse response;
-            
+
             stub = new PersonSoapStub();
-            personSoapE = new PersonSoapStub.SearchPersonE();
-            
-            responseE = stub.searchPerson(personSoapE);
+            searchPerson = new PersonSoapStub.SearchPerson();
+            searchPersonE = new PersonSoapStub.SearchPersonE();
+
+            searchPerson.setIdentification(ci);
+            searchPersonE.setSearchPerson(searchPerson);
+
+            responseE = stub.searchPerson(searchPersonE);
             response = responseE.getSearchPersonResponse();
-            
+
             personSoap = response.get_return();
-            
-            if (!personSoap.getStatusCode().equals("-1")) {
+
+            if (personSoap.getStatusCode().equals("0")) {
                 responsePerson.setCi(personSoap.getCi());
                 responsePerson.setLastName(personSoap.getLastName());
                 responsePerson.setName(personSoap.getName());
@@ -52,6 +58,6 @@ public class PersonCommunicator {
             responsePerson.setStatusCode("-97");
             Logger.getLogger(PersonCommunicator.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Person();
+        return responsePerson;
     }
 }
