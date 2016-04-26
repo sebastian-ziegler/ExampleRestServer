@@ -16,6 +16,33 @@
     </properties>
 
     <dependencies>
+        <!-- Jersey Dependencies -->
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-core</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+
+        <!-- Others -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -28,6 +55,8 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Axis2 Dependencies -->
         <dependency>
               <groupId>org.apache.axis2</groupId>
               <artifactId>axis2</artifactId>

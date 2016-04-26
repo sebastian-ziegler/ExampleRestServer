@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>Restful Example</display-name>
+
     <servlet>
         <servlet-name>People</servlet-name>
-        <servlet-class>com.sebastian.restserver.services.People</servlet-class>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+
+        <init-param>
+             <param-name>com.sun.jersey.config.property.packages</param-name>
+             <param-value>com.sebastian.restserver.services</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>People</servlet-name>
-        <url-pattern>/People</url-pattern>
+        <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
 </web-app>
